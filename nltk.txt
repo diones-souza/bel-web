@@ -1,0 +1,5 @@
+stopwords
+rslp
+averaged_perceptron_tagger
+mac_morpho
+punkt

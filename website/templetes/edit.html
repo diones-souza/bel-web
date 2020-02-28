@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="edit" method="POST">{% csrf_token %}
+    <div class="form-row"> 
+        <div class="col-12" align="right">
+            <button class="btn btn-success"><span class="fas fa-database"></span></button>
+        </div>
+    </div> 
+    <div class="form-row">
+        <div class="col-4">
+            <label>Classificação</label>
+            <input type="text" class="form-control" name="classification" placeholder="ex: filme" value="{% for message in data_classification%}{{message.classification}}{% endfor %}">
+        </div>
+        <div class="col-8">
+            <label>Palavras chaves</label>
+            <input type="text" class="form-control" name="key" placeholder="ex: filme bom gosta" value="{% for message in data_classification%}{{message.phrase}}{% endfor %}">
+        </div>
+    </div>
+    <div class="form-row margin-top">
+        {% for obj in data_previous %}
+        <div class="col-4">
+            <label style="display: block">Prévia da Resposta</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="previous[]" placeholder="ex: eu gosto de filme" value="{{obj.phrase}}"><div class="input-group-append">
+                    <button type="button" class="btn btn-danger remove"><span class="fas fa-times"></span></button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% for obj in data_response %}
+        <div class="col-4">
+            <label style="display: block">Resposta da Classificação</label>
+            <div class="input-group mb-3">
+                <input required type="text" class="form-control" name="response[]" placeholder="ex: são uma boa forma de destração" value="{{obj.phrase}}">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-danger remove"><span class="fas fa-times"></span></button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% for obj in data_next %}
+        <div class="col-4">
+            <label style="display: block">Conclusão da Resposta</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="next[]" placeholder="ex: vejo sempre com meus amigos" value="{{obj.phrase}}">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-danger remove"><span class="fas fa-times"></span></button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="form-row margin-top" id="inputs_add"> 
+        <div class="col-12" align="right">
+            <button type="button" class="btn btn-primary" name="add"><span class="fas fa-plus"></span></button>
+        </div>
+    </div> 
+    <div class="form-row hide">
+            <label>Classificação</label>
+            <input required type="text" class="form-control" name="code" placeholder="ex: filme" value="{% for message in data_classification%}{{message.id}}{% endfor %}">
+            <input  type="text" class="form-control" name="search" placeholder="ex: filme" value="{% for message in data_classification%}{{message.classification}}{% endfor %}">
+    </div> 
+</form>
+{% endblock %} 

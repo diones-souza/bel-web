@@ -1,0 +1,161 @@
+body{
+	font-size: 18px;
+	font-family: "serif", Times, serif;
+}
+
+ul li label{
+	margin-top: 18px;
+}
+ul li input {
+	margin-left: 10px;
+	margin-top: 10px;
+}
+ul li button {
+	margin-top: 10px;
+}
+
+.margin-top{
+	margin-top: 20px;
+}
+
+.min-margin-top{
+	margin-top: 5px;
+}
+
+.hide{
+	visibility:hidden;
+}
+
+.min-height textarea{
+	min-height: 150px;
+}
+
+.max-height textarea{
+	max-height: 30px;
+}
+
+.fixed-height textarea{
+	max-height: 30px;
+	min-height: 30px;
+}
+
+.center{
+    text-align:center;
+}
+
+.color-text-black{
+    color: #000000;
+}
+
+.color-text-white{
+    color: #FFFFFF;
+}
+
+.color-text-dark-red{
+    color: #800000;
+}
+
+.color-text-darkside-blue{
+    color: #212529;
+}
+
+.color-text-primary{
+    color: #007BBF;
+}
+
+.color-text-danger{
+    color: #DC3545;
+}
+
+.bold-text{
+    font-weight: bold;
+}
+
+/* Tons de Vermelho */
+.color-red{
+	background-color: #FF0000;
+}
+
+.color-tomato{
+	background-color: #FF6347;
+}
+
+.color-coral{
+	background-color: #FF7F50;
+}
+
+.color-brown{
+	background-color: #A52A2A;
+}
+
+.color-fire-brick{
+	background-color: #B22222;
+}
+
+.color-dark-red{
+	background-color: #800000;
+}
+
+/* Tons de Azul*/
+
+.color-dark-slate-blue{
+	background-color: #483D8B;
+}
+
+.color-darkside-blue{
+	background-color: #212529;
+}
+
+.color-midnight-blue{
+	background-color: #191970;
+}
+
+.color-blue{
+	background-color: #0000FF;
+}
+
+.color-royal-blue{
+	background-color: #4169E1;
+}
+
+.color-light-sky-blue{
+	background-color: #87CEFA;
+}
+
+.color-steel-blue{
+	background-color: #4682B4;
+}
+
+/* Tons de Cinza*/
+
+.color-black{
+	background-color: #000000;
+}
+
+.color-light-black{
+	background-color: #393939;
+}
+
+.color-dim-gray{
+	background-color: #696969;
+}
+
+.color-gray{
+	background-color: #808080;
+}
+
+.color-dark-gray{
+	background-color: #A9A9A9;
+}
+
+.color-silver{
+	background-color: #C0C0C0;
+}
+
+.color-light-grey{
+	background-color: #D3D3D3;
+}
+
+.color-gainsboro{
+	background-color: #DCDCDC;
+}

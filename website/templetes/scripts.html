@@ -1,0 +1,144 @@
+<!-- JavaScripts -->
+<script src="static/website/js/jquery-3.3.1.min.js"></script>
+<script src="static/website/js/popper.min.js"></script>
+<script src="static/website/js/bootstrap.bundle.min.js"></script>
+<script src="static/website/js/bootstrap.min.js"></script>
+<script src="static/website/noty/js/noty/jquery.noty.js"></script>
+<script src="static/website/noty/js/noty/packaged/jquery.noty.packaged.min.js"></script>
+<script src="static/website/dataTables/js/jquery.dataTables.min.js"></script> 
+<script type="text/javascript">
+
+	$('#start').click(function(){
+		document.getElementById('start').style.display = "none";
+		document.getElementById('stop').style.display = "inline";
+		rec();
+	});
+
+	$(document).ready(function(){ 
+		var previous = '<div class="col-4"><label style="display: block">Prévia da Resposta</label><div class="input-group mb-3"><input type="text" class="form-control" name="previous[]" placeholder="ex: eu gosto de filme"><div class="input-group-append"><button type="button" class="btn btn-danger remove"><span class="fas fa-times"></span></button></div></div></div>';  
+
+		var response = '<div class="col-4"><label style="display: block">Resposta da Classificação</label><div class="input-group mb-3"><input required type="text" class="form-control" name="response[]" placeholder="ex: são uma boa forma de destração"><div class="input-group-append"><button type="button" class="btn btn-danger remove"><span class="fas fa-times"></span></button></div></div></div>';
+
+		var next = '<div class="col-4"><label style="display: block">Conclusão da Resposta</label><div class="input-group mb-3"><input type="text" class="form-control" name="next[]" placeholder="ex: vejo sempre com meus amigos"><div class="input-group-append"><button type="button" class="btn btn-danger remove"><span class="fas fa-times"></span></button></div></div></div>';
+
+		var input = previous+response+next;
+		$("button[name='add_previous']").click(function( e ){ 
+			$('#inputs_add').append(previous);  
+		});
+
+		$("button[name='add_response']").click(function( e ){ 
+			$('#inputs_add').append(response);  
+		}); 
+
+		$("button[name='add_next']").click(function( e ){ 
+			$('#inputs_add').append(next);  
+		});  
+		$("button[name='add']").click(function( e ){ 
+			$('#inputs_add').append(input);  
+		});
+
+		$('body').on('click','.remove',function( e ){  
+			$(this).closest('div.col-4').remove();	
+		}); 
+
+		document.getElementById('stop').style.display = "none";
+
+	});
+	$(document).ready(function () {
+		var host = location.pathname
+		if(host=='/'){
+			$("#home").addClass("active");
+			$("#insert").removeClass("active");
+			$("#list").removeClass("active");
+		}else{
+			if(host=='/insert' || host=='/edit'){
+				$("#insert").addClass("active");
+				$("#home").removeClass("active");
+				$("#list").removeClass("active");
+			}else{
+				if(host=='/list'){
+					$("#list").addClass("active");
+					$("#insert").removeClass("active");
+					$("#home").removeClass("active");
+				}
+			}
+			
+		}
+	});
+
+	function rec(){
+		SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
+		let finalTranscript = '';
+		let recognition = new SpeechRecognition();
+		recognition.interimResults = true;
+		recognition.maxAlternatives = 10;
+		recognition.continuous = true;
+		recognition.onresult = (event) => {
+			let interimTranscript = '';
+			for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
+				let transcript = event.results[i][0].transcript;
+				if (event.results[i].isFinal) {
+					finalTranscript += transcript;
+				} else {
+					interimTranscript += transcript;
+				}
+			}
+			if (interimTranscript!='')
+				$('#message').val(interimTranscript)
+		}
+		recognition.start();
+		$('#stop').click(function(){
+			document.getElementById('start').style.display = "inline";
+			document.getElementById('stop').style.display = "none";
+			recognition.stop();
+			var message = $('#message').val();
+			if(message!=''){
+				$('#message').val('')
+				$.getJSON( "ajax", {text: message}, function( data ) {
+					$.noty.defaults.killer = true;
+					var n = noty({
+						text: data.message,
+						layout: 'topCenter',
+						closeWith: ['click'],
+						type: 'information',
+						animation: {
+							open: {height: 'toggle'},
+							close: {height: 'toggle'},
+							easing: 'swing',
+	        				speed: 1000 // opening & closing animation speed
+	        			}
+	        		});
+					var audio = new Audio();
+					audio.src = "static/website/audio/voice.mp3";
+					audio.play();
+				});
+			}
+		});
+	}
+	$(document).ready( function () {
+		$('#table').DataTable();
+	} );
+  	//$('input#txt_consulta').quicksearch('table#tabela tbody tr');
+  	$('.remove_database').click(function(){
+  		id = $(this).data( "id" );
+  		$.getJSON( "remove", {id: id}, function( data ) {
+  			$.noty.defaults.killer = true;
+  			var n = noty({
+  				text: data.message,
+  				layout: 'topCenter',
+  				closeWith: ['click','hover'],
+  				type: 'success',
+  				animation: {
+  					open: {height: 'toggle'},
+  					close: {height: 'toggle'},
+  					easing: 'swing',
+		        speed: 1000 // opening & closing animation speed
+		    }
+		});
+  		});
+  		setTimeout(function(){
+  			document.getElementById('id').innerHTML = location.reload();
+  		},3000)
+  	});
+
+  </script> 

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="form-row margin-top">
+	<div class="col-12" align="center">
+		<div class="col-6 input-group mb-3">
+			<input id="message" name="message" type="text" class="form-control" placeholder="Entrada"/>
+			<div class="input-group-append">
+				<button id="start" class="btn btn-outline-primary" type="button"><span id="microphone" class="fas fa-microphone-alt-slash"></span></button>
+				<button id="stop" class="btn btn-outline-danger" type="button"><span id="microphone" class="fas fa-microphone-alt"></span></button>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

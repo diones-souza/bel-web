@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- 
+	<meta http-equiv="refresh" content="5"> 
+-->
+<title>Bel</title>
+
+<!-- Styles -->
+<link rel="stylesheet" type="text/css" href="static/website/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="static/website/css/app.css">
+<link rel="stylesheet" type="text/css" href="static/website/dataTables/css/jquery.dataTables.min.css">
+<link rel="shortcut icon" href="static/website/img/logo_fv.ico" type="image/x-icon" />
+<!-- fontawesome icons-->
+<link rel="stylesheet" type="text/css" href="static/website/fontawesome/css/all.css">
+
+</head>
+<body>
+	{% include 'nav.html' %}
+	<div class="col-xl-12">
+		<div class="container-fluid">
+			<div class="row margin-top">
+				<div class="col-12" align="center">
+					<img src="static/website/img/logo_fv.png" width="150">
+				</div>
+			</div>
+			{% block content %}
+			{% endblock %}
+		</div>
+	</div>
+	{% include 'scripts.html' %}
+</body>
+</html>

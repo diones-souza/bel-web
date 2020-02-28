@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="insert" method="POST">{% csrf_token %}
+    <div class="form-row"> 
+        <div class="col-12" align="right">
+            <button class="btn btn-success"><span class="fas fa-database"></span></button>
+        </div>
+    </div>  
+    <div class="form-row">
+        <div class="col-4">
+            <label>Classificação</label>
+            <input required type="text" class="form-control" name="classification" placeholder="ex: filme">
+        </div>
+        <div class="col-8">
+            <label>Palavras chaves</label>
+            <input required type="text" class="form-control" name="key" placeholder="ex: filme bom gosta">
+        </div>
+    </div>
+    <div class="form-row margin-top">
+        <div class="col-4">
+            <label style="display: block">Prévia da Resposta</label>
+            <input type="text" class="form-control" name="previous[]" placeholder="ex: eu gosto de filme">
+        </div>
+        <div class="col-4">
+            <label style="display: block">Resposta da Classificação</label>
+            <input required type="text" class="form-control" name="response[]" placeholder="ex: são uma boa forma de destração">
+        </div>
+        <div class="col-4">
+            <label style="display: block">Conclusão da Resposta</label>
+            <input type="text" class="form-control" name="next[]" placeholder="ex: vejo sempre com meus amigos">
+        </div>        
+    </div>
+    <div class="form-row margin-top" id="inputs_add"> 
+        <div class="col-12" align="right">
+            <button type="button" class="btn btn-primary" name="add"><span class="fas fa-plus"></span></button>
+        </div>
+    </div> 
+</form>
+{% endblock %} 
